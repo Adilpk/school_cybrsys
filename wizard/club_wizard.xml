@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="club_wizard_form" model="ir.ui.view">
+        <field name="name">club.wizard.form</field>
+        <field name="model">club.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Clubs">
+                <group>
+                    <field name="club_id"/>
+                    <field name="student_id"/>
+                </group>
+                <footer>
+                    <button string="Print Pdf" class="btn-primary"
+                            name="button_print" type="object"/>
+                    <button string="Print Club Report Excel" class="btn-primary"
+                            name="print_xlsx" type="object"/>
+                    <button string="Cancel" class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="club_wizard_action" model="ir.actions.act_window">
+        <field name="name">Club Data</field>
+        <field name="res_model">club.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="club_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_leave">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <center>
+                        <h3>Leave Report</h3>
+                    </center>
+                </div>
+                <div>
+                    <b>Today :</b> <t t-out="data['today']"/>
+                </div>
+                <di>
+                    <br> </br>
+                </di>
+                <div>
+                    <t t-if="data['filter1'] == 'day'">
+                        <b>Current Day</b><br> </br>
+                    </t>
+                    <t t-if="data['filter1'] == 'month'">
+                        <b>Current Month</b><br> </br>
+                    </t>
+                    <t t-if="data['filter1'] == 'week'">
+                        <b>Current Week</b><br> </br>
+                    </t>
+                </div>
+                <div>
+                    <br> </br>
+                </div>
+                <div>
+                    <t t-if="data['class']">
+                        <b>Class</b>: <t t-out="data['class']"/><br> </br>
+                    </t>
+                    <t t-if="data['student']">
+                        <b>student</b>: <t t-out="data['student']"/><br></br>
+                    </t>
+                </div>
+                <br> </br>
+                <table class="table table-bordered mb64">
+                    <thead>
+                        <t t-if="result">
+                            <tr>
+                            <th class="text-center">Sl.No</th>
+                            <th class="text-center">Subject</th>
+                            <t t-if="not data['student']">
+                                 <th class="text-center">Name</th>
+                            </t>
+                            <t t-if="not data['class']">
+                                <th class="text-center">Class</th>
+                            </t>
+                            <th class="text-center">Start Date</th>
+                            <th class="text-center">End Date</th>
+                        </tr>
+                        </t>
+                    </thead>
+                    <tbody>
+                        <t t-set="i" t-value="1"/>
+                        <t t-foreach="result" t-as="res">
+                            <tr>
+                                <td>
+                                    <span t-esc="i"/>
+                                    <t t-set="i" t-value="i+1"/>
+                                </td>
+                                <td>
+                                    <t t-out="res['subject']"/>
+                                </td>
+                                <t t-if="not data['student']">
+                                <td>
+                                    <t t-out="res['first_name']"/>
+                                </td>
+                                </t>
+                                <t t-if="not data['class']">
+                                    <td>
+                                        <t t-out="res['name']"/>
+                                    </td>
+                                </t>
+                                <td>
+                                    <t t-out="res['start_date']"/>
+                                </td>
+                                <td>
+                                    <t t-out="res['end_date']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>

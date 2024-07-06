@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="company_rule" model="ir.rule">
+        <field name="name">School : company view</field>
+        <field name="model_id" ref="model_student_manage"/>
+        <field name="global" eval="True"/>
+        <field name="domain_force">[('company_id','in',company_ids)]</field>
+    </record>
+    <record id="student_data_view" model="ir.rule">
+        <field name="name">Student view</field>
+        <field name="model_id" ref="model_student_manage"/>
+        <field name="domain_force">[('email', '=', user.login)]</field>
+        <field name="groups" eval="[(4, ref('student_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="student_leave_view" model="ir.rule">
+        <field name="name">Student view</field>
+        <field name="model_id" ref="model_manage_leaves"/>
+        <field name="domain_force">[('student_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('student_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+    <record id="student_event_view" model="ir.rule">
+        <field name="name">Student events</field>
+        <field name="model_id" ref="model_manage_clubs"/>
+        <field name="domain_force">[('student_id.create_uid', 'not in',
+            user.ids)]
+        </field>
+        <field name="groups" eval="[(4, ref('student_access'))]"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_create" eval="False"/>
+        <field name="perm_write" eval="False"/>
+        <field name="perm_unlink" eval="False"/>
+    </record>
+</odoo>

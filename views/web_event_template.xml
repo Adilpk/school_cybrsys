@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="web_all_events_template">
+        <t t-call="website.layout">
+            <div class="container head" align="center">
+                <div class="heading">
+                    <h5>
+                        <b>Events</b>
+                    </h5>
+                </div>
+            </div>
+            <div class="container link-head" align="center">
+                <a t-attf-href="createevents">Create Events</a>
+            </div>
+            <div class="container table">
+                <table class="table table-bordered mb64">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Event</th>
+                            <th class="text-center">Club</th>
+                            <th class="text-center">Coordinator</th>
+                            <th class="text-center">Venue</th>
+                            <th class="text-center">Start Date</th>
+                            <th class="text-center">End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="events" t-as="event">
+                            <tr>
+                                <td>
+                                    <t t-out="event['name']"/>
+                                </td>
+                                <td>
+                                    <t t-out="event['club_id'].name"/>
+                                </td>
+                                <td>
+                                    <t t-out="event['coordinator']"/>
+                                </td>
+                                <td>
+                                    <t t-out="event['venue_id'].name"/>
+                                </td>
+                                <td>
+                                    <t t-out="event['start_date']"/>
+                                </td>
+                                <td>
+                                    <t t-out="event['end_date']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+    <template id="web_event_template">
+        <t t-call="website.layout">
+            <div class="container" align="center">
+                <div class="heading head">
+                    <h5>
+                        <b>Events</b>
+                    </h5>
+                </div>
+            </div>
+            <div class="container form-class">
+                <form action="/eventform/submit" enctype="multipart/form-data"
+                      method="POST">
+                    <input type="hidden" name="csrf_token"
+                           t-att-value="request.csrf_token()"/>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>Club</b>
+                            </label>
+                            <select name="club_name" class="form-control">
+                                <option value="" selected="true">Select Your
+                                    Club
+                                </option>
+                                <t t-foreach="clubs" t-as="cl">
+                                    <option t-att-value="cl.id">
+                                        <t t-esc="cl.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label>
+                                <b>Venue</b>
+                            </label>
+                            <select name="venue" class="form-control">
+                                <option t-att-value="company.id">
+                                    <t t-esc="company.name"/>
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>Event</b>
+                            </label>
+                            <input type="text" class="form-control"
+                                   placeholder="Enter Event Name" name="event"
+                                   required="1"/>
+                        </div>
+                        <div class="col-6">
+                            <label>
+                                <b>Coordinator</b>
+                            </label>
+                            <input type="text" class="form-control"
+                                   placeholder="Enter coordinator"
+                                   name="coordinator"/>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>Start Date</b>
+                            </label>
+                            <input type="date" class="form-control"
+                                   name="start_date" id="start_date"
+                                   placeholder="Enter start_date" required="1"/>
+                        </div>
+                        <div class="col-6">
+                            <label>
+                                <b>End Date</b>
+                            </label>
+                            <input type="date" class="form-control"
+                                   name="end_date" id="end_date"
+                                   placeholder="Enter end_date" required="1"/>
+
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>Event Card</b>
+                            </label>
+                            <input type="file" class="form-control"
+                                   name="event_card" id="event_card"/>
+                        </div>
+                    </div>
+                    <div class="form-group col-12" align="center">
+                        <div style="width: 200px;"
+                             class="s_website_form_label"/>
+                        <button type="submit" class="btn btn-primary">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+

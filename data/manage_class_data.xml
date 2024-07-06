@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Class demo Data its contain class and department details-->
+        <record id="subject_management_I" model="manage.class">
+            <field name="name">I standered</field>
+            <field name="department_id" ref="school_management.dep_management_lp"/>
+        </record>
+        <record id="subject_management_VI" model="manage.class">
+            <field name="name">VI standered</field>
+            <field name="department_id" ref="school_management.dep_management_up"/>
+        </record>
+        <record id="subject_management_X" model="manage.class">
+            <field name="name">X standered</field>
+            <field name="department_id" ref="school_management.dep_management_hs"/>
+        </record>
+</odoo>

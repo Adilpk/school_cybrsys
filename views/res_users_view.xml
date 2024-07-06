@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="new_user_view" model="ir.ui.view">
+        <field name="name">user.new.tree</field>
+        <field name="model">res.users</field>
+        <field name="arch" type="xml">
+            <tree string="Channel" decoration-danger="present==False" >
+                <field name="present"/>
+                <field name="name"/>
+                <field name="company_id"/>
+            </tree>
+        </field>
+    </record>
+    <record id="users_type_action" model="ir.actions.act_window">
+        <field name="name">Attendance</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="new_user_view"/>
+    </record>
+</odoo>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="school_menu_root" name="School Management">
+        <menuitem id="first_level_menu" name="Students">
+            <menuitem id="first_action" action="student_action"/>
+        </menuitem>
+        <menuitem id="second_level_menu" name="Clubs"
+                  action="school_clubs_action">
+        </menuitem>
+        <menuitem id="third_level_menu" name="Events"
+                  action="school_events_action">
+        </menuitem>
+        <menuitem id="schools_leave_action" name="Leaves"
+                  action="school_leave_action"/>
+        <menuitem id="student_exam_action" name="Exam" action="exam_action"/>
+        <menuitem id="sixth_level_menu" name="Employees">
+            <menuitem id="stud_reg_action" action="student_registered_action"/>
+            <menuitem id="teacher_type_action" action="employee_type_action"/>
+            <menuitem id="office_staff_type_action" action="staff_type_action"/>
+        </menuitem>
+        <menuitem id="reports_menu" name="Reports">
+            <menuitem id="leave_action" action="leave_wizard_action"/>
+            <menuitem id="event_action" action="event_wizard_action"/>
+            <menuitem id="club_action" action="club_wizard_action"/>
+            <menuitem id="student_wi_action" action="student_wizard_action"/>
+            <menuitem id="exam_wi_action" action="exam_wizard_action"/>
+        </menuitem>
+        <menuitem id="last_level_menu" name="Configuration">
+            <menuitem id="school_management_dept_action"
+                      action="school_dept_action"/>
+            <menuitem id="school_management_class_action"
+                      action="school_class_action"/>
+            <menuitem id="school_management_subject_action"
+                      action="school_subject_action"/>
+            <menuitem id="school_management_academic_year_action"
+                      action="school_academic_year_action"/>
+            <menuitem id="users_action" action="users_type_action"/>
+        </menuitem>
+    </menuitem>
+    <record id="website_registration_menu" model="website.menu">
+        <field name="name">Registration</field>
+        <field name="url">/studentform</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+    <record id="website_event_menu" model="website.menu">
+        <field name="name">Events</field>
+        <field name="url">/eventform</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+    <record id="website_leave_menu" model="website.menu">
+        <field name="name">Leave</field>
+        <field name="url">/leaveform</field>
+        <field name="parent_id" ref="website.main_menu"/>
+    </record>
+</odoo>
+

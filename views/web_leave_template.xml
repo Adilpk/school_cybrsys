@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="web_all_leaves_template">
+        <t t-call="website.layout">
+            <div class="container head" align="center">
+                <h5>
+                    <b>Leaves</b>
+                </h5>
+            </div>
+            <div class="container link-head" align="center">
+                <a t-attf-href="createleave">Create Leaves</a>
+            </div>
+            <div class="container table">
+                <table class="table table-bordered mb64">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Subject</th>
+                            <th class="text-center">Start Date</th>
+                            <th class="text-center">End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="leaves" t-as="leave">
+                            <tr>
+                                <td>
+                                    <t t-out="leave['student_id'].name"/>
+                                </td>
+                                <td>
+                                    <t t-out="leave['subject']"/>
+                                </td>
+                                <td>
+                                    <t t-out="leave['start_date']"/>
+                                </td>
+                                <td>
+                                    <t t-out="leave['end_date']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+    <template id="web_leave_template">
+        <t t-call="website.layout">
+            <div class="container head" align="center">
+                <h5>
+                    <b>Leave Application</b>
+                </h5>
+            </div>
+            <div class="container form-class">
+                <form action="/leaveform/submit" enctype="multipart/form-data"
+                      method="POST">
+                    <input type="hidden" name="csrf_token"
+                           t-att-value="request.csrf_token()"/>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>Reason</b>
+                            </label>
+                            <input type="text" class="form-control"
+                                   placeholder="Enter Leave Reason"
+                                   name="subject" required="1"/>
+                        </div>
+                        <div class="col-6">
+                            <label>
+                                <b>Name</b>
+                            </label>
+                            <select name="student" class="form-control">
+                                <option t-att-value="current_user['id']">
+                                    <t t-esc="current_user['name']"/>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>Start Date</b>
+                            </label>
+
+                            <input type="date" class="form-control"
+                                   id="start_date"
+                                   name="start_date" required="1"/>
+                        </div>
+                        <div class="col-6">
+                            <label>
+                                <b>End Date</b>
+                            </label>
+                            <input type="date" class="form-control"
+                                   id="end_date"
+                                   name="end_date" required="1"/>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="form-group col-12" align="center">
+                        <div style="width: 200px;"
+                             class="s_website_form_label"/>
+                        <button type="submit" class="btn btn-primary">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>
+
+

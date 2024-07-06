@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="student_view_tree" model="ir.ui.view">
+        <field name="name">student.tree</field>
+        <field name="model">student.manage</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="date_of_birth"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="student_manage_form" model="ir.ui.view">
+        <field name="name">student.manage.form</field>
+        <field name="model">student.manage</field>
+        <field name="arch" type="xml">
+            <form string="student_form">
+                <header>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="draft,registration"/>
+                    <button name="button_change_stage" string="Register"
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="admission_number" readonly="1"/>
+                        </h1>
+                    </div>
+                    <field name="photo" widget="image" class="oe_avatar"/>
+                    <group>
+                        <group>
+                            <field name="first_name"/>
+                            <field name="last_name"/>
+                            <field name="email" widget="email"/>
+                        </group>
+                        <group>
+                            <field name="registration_date"/>
+                            <field name="phone"/>
+                            <field name="company_id" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Personal Information">
+                            <group>
+                                <group>
+                                    <field name="father"/>
+                                    <field name="mother"/>
+                                    <field name="communication_address"/>
+                                    <field name="communication_as_same"/>
+                                    <field name="permanent_address"
+                                           invisible="communication_as_same != False"/>
+                                    <field name="register_number"/>
+                                </group>
+                                <group>
+                                    <field name="date_of_birth"/>
+                                    <field name="age"/>
+                                    <field name="gender"/>
+                                    <field name="department_id"
+                                           options="{'no_create' : True}"/>
+                                    <field name="class_id"
+                                           options="{'no_create' : True}" domain="[('department_id','=',department_id)]"/>
+                                    <field name="file" filename="filename"/>
+                                    <field name="filename" invisible="1"/>
+                                    <field name="aadhar_number"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="student_action" model="ir.actions.act_window">
+        <field name="name">Registration</field>
+        <field name="res_model">student.manage</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
+
+

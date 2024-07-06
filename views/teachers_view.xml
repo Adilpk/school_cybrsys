@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="employee_type_action" model="ir.actions.act_window">
+        <field name="name">Teachers</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('employee_type','=','teacher')]</field>
+    </record>
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="student_class_tree" model="ir.ui.view">
+        <field name="name">student.academic.tree</field>
+        <field name="model">manage.academic.year</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="year"/>
+            </tree>
+        </field>
+    </record>
+    <record id="student_class_form" model="ir.ui.view">
+        <field name="name">student.academic.form</field>
+        <field name="model">manage.academic.year</field>
+        <field name="arch" type="xml">
+            <form string="class_form">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="year"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="school_academic_year_action" model="ir.actions.act_window">
+        <field name="name">Manage Academic Year</field>
+        <field name="res_model">manage.academic.year</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

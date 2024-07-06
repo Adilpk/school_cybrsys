@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Subject demo data -->
+        <record id="subject_management_eng" model="manage.subject">
+            <field name="name">English</field>
+            <field name="department_id" ref="school_management.dep_management_lp"/>
+        </record>
+        <record id="subject_management_mal" model="manage.subject">
+            <field name="name">Malayalam</field>
+            <field name="department_id" ref="school_management.dep_management_up"/>
+        </record>
+        <record id="subject_management_maths" model="manage.subject">
+            <field name="name">Maths</field>
+            <field name="department_id" ref="school_management.dep_management_up"/>
+        </record>
+</odoo>

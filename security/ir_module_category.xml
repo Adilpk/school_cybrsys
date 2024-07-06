@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.module.category" id="school_user_management">
+        <field name="name">School users</field>
+        <field name="description">school User access levels for Overtime
+            module
+        </field>
+        <field name="sequence">10</field>
+    </record>
+    <record id="student_access" model="res.groups">
+        <field name="name">Student</field>
+        <field name="category_id" ref="school_user_management"/>
+    </record>
+    <record id="teacher_access" model="res.groups">
+        <field name="name">Teacher</field>
+        <field name="category_id" ref="school_user_management"/>
+    </record>
+    <record id="office_staff_access" model="res.groups">
+        <field name="name">Office Staff</field>
+        <field name="category_id" ref="school_user_management"/>
+    </record>
+</odoo>

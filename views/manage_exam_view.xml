@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="exam_manage_form" model="ir.ui.view">
+        <field name="name">exam.manage.form</field>
+        <field name="model">manage.exam</field>
+        <field name="arch" type="xml">
+            <form string="Exam Form">
+                <header>
+                    <button name="button_exam" type="object"
+                            string="Assign Exam" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="exam" placeholder="Mid-term Exam"/>
+                        </group>
+                        <group>
+                            <field name="class_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Papers">
+                            <field name="paper_ids">
+                                <tree>
+                                    <field name="subject_id"/>
+                                    <field name="pass_mark"/>
+                                    <field name="max_mark"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="exam_action" model="ir.actions.act_window">
+        <field name="name">Manage Exam</field>
+        <field name="res_model">manage.exam</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
+
+

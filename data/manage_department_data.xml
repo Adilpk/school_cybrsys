@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Department demo data -->
+        <record id="dep_management_lp" model="manage.department">
+            <field name="name">LP</field>
+            <field name="hod_id" ref="base.res_partner_12"/>
+        </record>
+        <record id="dep_management_up" model="manage.department">
+            <field name="name">UP</field>
+            <field name="hod_id" ref="base.res_partner_2"/>
+        </record>
+        <record id="dep_management_hs" model="manage.department">
+            <field name="name">HS</field>
+            <field name="hod_id" ref="base.res_partner_main2"/>
+        </record>
+</odoo>

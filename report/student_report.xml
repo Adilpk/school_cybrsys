@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_student">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <center>
+                        <h3>Student Report</h3>
+                    </center>
+                </div>
+                <div>
+                    <b>Today :</b><t t-out="data['today']"/>
+                </div>
+                <di>
+                    <br> </br>
+                </di>
+                <div>
+                    <t t-if="data['department_id']">
+                        <b>Department :</b> <t t-out="data['department_id']"/>
+                    </t>
+                </div>
+                <div>
+                    <br> </br>
+                </div>
+                <div>
+                    <t t-if="data['class_id']">
+                        <B>Class :</B><t t-out="data['class_id']"/>
+                    </t>
+                </div>
+                <br> </br>
+                <table class="table table-bordered mb64">
+                    <thead>
+                        <t t-if="result">
+                            <tr>
+                            <th class="text-center">Sl.No</th>
+                            <th class="text-center">Name</th>
+                            <t t-if="not data['class_id']">
+                                <th class="text-center">Class</th>
+                            </t>
+                            <t t-if="not data['department_id']">
+                                <th class="text-center">Department</th>
+                            </t>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">Phone</th>
+                        </tr>
+                        </t>
+                    </thead>
+                    <tbody>
+                        <t t-set="i" t-value="1"/>
+                        <t t-foreach="result" t-as="res">
+                            <tr>
+                                <td>
+                                    <span t-esc="i"/>
+                                    <t t-set="i" t-value="i+1"/>
+                                </td>
+                                <td>
+                                    <t t-out="res['first_name']"/>
+                                </td>
+                                <t t-if="not data['class_id']">
+                                <td>
+                                    <t t-out="res['class']"/>
+                                </td>
+                                </t>
+                                <t t-if="not data['department_id']">
+                                <td>
+                                    <t t-out="res['department']"/>
+                                </td>
+                                </t>
+                                <td>
+                                    <t t-out="res['email']"/>
+                                </td>
+                                <td>
+                                    <t t-out="res['phone']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </t>
+        </t>
+    </template>
+</odoo>

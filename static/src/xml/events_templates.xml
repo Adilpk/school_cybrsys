@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+	<t t-name="school_management.events_snippet_carousel">
+    	<div t-attf-id="course_carousel{{carousel_id}}" class="container carousel slide" data-bs-ride="carousel" t-att-data-bs-interval="interval">
+       	<div class="carousel-inner row w-100 mx-auto" role="listbox">
+          	<t t-foreach="chunks" t-as="chunk" t-key="chunk[0]">
+                	<div t-att-class="chunk.is_active ? 'carousel-item active' : 'carousel-item'">
+                     	<div class="row">
+                        	<t t-foreach="chunk" t-as="item" t-key="item[0]">
+                           	<div class="block span3 col-3">
+                               	<div class="card-group">
+                                   	<div class="card">
+										<img class="card-img-top" t-attf-src="data:image/png;base64,{{item.event_card}}"
+                                             	style="padding: 0px; margin: 0px; height: 160px; width:305px;"/>
+                                        	<h5 class="mb-0"><t t-esc="item.name"/></h5>
+											<p><t t-esc="item.coordinator"/></p>
+                                        	<a t-attf-href="slides/{{item.id}}" class="btn btn-primary">
+                                            	View Details
+                                        	</a>
+                                   	</div>
+                               	</div>
+                           	</div>
+                        	</t>
+                    	</div>
+                	</div>
+          	</t>
+      	</div>
+    	</div>
+	<a t-attf-href="#course_carousel{{carousel_id}}" class="carousel-control-prev .btn" data-bs-slide="prev" role="button" aria-label="Previous" title="Previous">
+        	<span class="fa fa-chevron-circle-left fa-2x"/>
+<span class="visually-hidden">Previous</span>
+    	</a>
+		<a t-attf-href="#course_carousel{{carousel_id}}" class="carousel-control-next .btn" data-bs-slide="next" role="button" aria-label="Next" title="Next">
+        	<span class="fa fa-chevron-circle-right fa-2x"/>
+        	<span class="visually-hidden">Next</span>
+    	</a>
+	</t>
+</templates>
+
+

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="email_template_event" model="mail.template">
+            <field name="name">Event email</field>
+            <field name="model_id" ref="school_management.model_manage_events"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="subject">{{ object.name }}</field>
+            <field name="email_from">{{ object.venue_id.email }}</field>
+            <field name="email_to">{{ object.send_partners()}}</field>
+            <field name="description">Add Description</field>
+            <field name="scheduled_date"/>
+            <field name="body_html" type="html">
+                <div>
+                    <p>
+                        Dear
+                        <br/>
+                        <br/>
+                        Our
+                        <b>
+                            <t t-out="object.name"/>
+                        </b>
+                        conducted by
+                        <b>
+                            <t t-out="object.start_date"/>
+                        </b>
+                        at
+                        <t t-out="object.venue_id.name"/>
+                        <br/>
+                        <br/>
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

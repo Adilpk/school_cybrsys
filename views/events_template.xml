@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="each_event_snippet" name="Each Events">
+        <t t-call="website.layout">
+            <div class="container len">
+                 <div class="card card_align event" style="width: 30rem;">
+                    <t t-foreach="event_record" t-as="event">
+                <div class="card-body row">
+                    <img class="card-img-top" t-attf-src="data:image/png;base64,{{event.event_card}}"
+                                             	style="padding: 0px; margin: 0px; height: 250px; width:475px;"/>
+                    <h3 class="card-title"><t t-out="event.name"/></h3>
+                    <h5 class="card-subtitle mb-2 text-muted"><t t-out="event.coordinator"/></h5>
+                    <br> </br>
+                    <label><b>Start Date:</b></label>
+                    <h6 class="card-subtitle mb-2 text-muted"><t t-out="event.start_date"/></h6>
+                    <label><b>End Date:</b></label>
+                    <h6 class="card-subtitle mb-2 text-muted"><t t-out="event.end_date"/></h6>
+                    <br> </br>
+                    <label><b>Conducted By:</b></label>
+                    <h6 class="card-subtitle mb-2 text-muted"><t t-out="event.club_id.name"/> club</h6>
+                    <a href='/' class="btn btn-primary">Go Back</a>
+                </div>
+                  </t>
+            </div>
+            </div>
+        </t>
+    </template>
+</odoo>
+

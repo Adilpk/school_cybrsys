@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="user_create_action" model="ir.actions.server">
+        <field name="name">Create user student</field>
+        <field name="model_id" ref="model_student_manage"/>
+        <field name="state">code</field>
+        <field name="code">
+            record.env['res.users'].create({
+            'name': record.first_name,
+            'login': record.email,
+            })
+        </field>
+    </record>
+    <record id="user_create_new_rule" model="base.automation">
+        <field name="name">Create new user</field>
+        <field name="model_id" ref="model_student_manage"/>
+        <field name="action_server_ids"
+               eval="[(6,0, [ref('user_create_action')])]"/>
+        <field name="trigger">on_create</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

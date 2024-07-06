@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="web_students_template">
+        <t t-call="website.layout">
+            <div class="container head" align="center">
+                <h5>
+                    <b>students</b>
+                </h5>
+            </div>
+            <div class="container link-head" align="center">
+                <a t-attf-href="createstudent">Register Student</a>
+            </div>
+            <div class="container table">
+                <table class="table table-bordered mb64">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Name</th>
+                            <th class="text-center">Admission Number</th>
+                            <th class="text-center">Email</th>
+                            <th class="text-center">phone</th>
+                            <th class="text-center">Date of Birth</th>
+                            <th class="text-center">Address</th>
+                            <th class="text-center">Father</th>
+                            <th class="text-center">Mother</th>
+                            <th class="text-center">Aadhar Number</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="students" t-as="student">
+                            <tr>
+                                <td>
+                                    <t t-out="student['first_name']"/>
+                                </td>
+                                <td>
+                                    <t t-out="student['admission_number']"/>
+                                </td>
+                                <td>
+                                    <t t-out="student['email']"/>
+                                </td>
+                                <td>
+                                    <t t-out="student['phone']"/>
+                                </td>
+                                <td>
+                                    <t t-out="student['date_of_birth']"/>
+                                </td>
+                                <td>
+                                    <t t-out="student['communication_address']"/>
+                                </td>
+                                <td>
+                                    <t t-out="student['father']"/>
+                                </td>
+                                <td>
+                                    <t t-out="student['mother']"/>
+                                </td>
+                                <td>
+                                    <t t-out="student['aadhar_number']"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+    <template id="web_form_template">
+        <t t-call="website.layout">
+            <div class="container head" align="center">
+                <h5>
+                    <b>Register Here</b>
+                </h5>
+            </div>
+            <div class="container form-class">
+                <form action="/studentform/submit" class="form_validate"
+                      enctype="multipart/form-data"
+                      method="POST">
+                    <input type="hidden" name="csrf_token"
+                           t-att-value="request.csrf_token()"/>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>First Name</b>
+                            </label>
+                            <input type="text" id="firstname"
+                                   class="form-control"
+                                   placeholder="Enter First Name"
+                                   name="first_name" required="1"/>
+                        </div>
+                        <div class="col-6">
+                            <label>
+                                <b>Last Name</b>
+                            </label>
+                            <input type="text" class="form-control "
+                                   placeholder="Enter Last Name"
+                                   name="last_name"/>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-6">
+                            <label>
+                                <b>Address</b>
+                            </label>
+                            <input type="text" class="form-control"
+                                   placeholder="Enter Address"
+                                   name="communication_address"/>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                <b>Email</b>
+                            </label>
+                            <input type="email" class="form-control"
+                                   placeholder="Enter Email" name="email"
+                                   required="1"/>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                <b>Phone</b>
+                            </label>
+                            <input type="phone" class="form-control phone"
+                                   name="phone" id="phone"
+                                   placeholder="Enter Phone Number"
+                                   required="1"/>
+                            <span id='phonemessage' style="color: red;"></span>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-3">
+                            <label>
+                                <b>Date of Birth</b>
+                            </label>
+                            <input type="date"
+                                   class="form-control calculate_age"
+                                   name="date_of_birth" id="dob"
+                                   placeholder="Enter Date of Birth"
+                                   required="1"/>
+                            <span id='datemessage' style="color: red;"></span>
+
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                <b>Age</b>
+                            </label>
+                            <input type="text" class="form-control" id="age"
+                                   name="age" readonly="1"/>
+                            <span id='agemessage' style="color: red;"></span>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                <b>Father</b>
+                            </label>
+                            <input type="text" class="form-control"
+                                   name="father"
+                                   placeholder="Enter Father Name"/>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                <b>Mother</b>
+                            </label>
+                            <input type="text" class="form-control"
+                                   name="mother"
+                                   placeholder="Enter Mother Name"/>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="row">
+                        <div class="col-3">
+                            <label>
+                                <b>Previous Department</b>
+                            </label>
+                            <select name="department_id" class="form-control">
+                                <option value="" selected="true">Select Your
+                                    Department
+                                </option>
+                                <t t-foreach="department" t-as="dept">
+                                    <option t-att-value="dept.id">
+                                        <t t-esc="dept.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                <b>Previous Class</b>
+                            </label>
+                            <select name="class_id" class="form-control">
+                                <option value="" selected="true">Select Your
+                                    Class
+                                </option>
+                                <t t-foreach="class" t-as="cl">
+                                    <option t-att-value="cl.id"
+                                            t-att-data-department_id="cl.department_id.id">
+                                        <t t-esc="cl.name"/>
+                                    </option>
+                                </t>
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                <b>Transfer Certificate</b>
+                            </label>
+                            <input type="file" class="form-control"
+                                   name="file" id="att"
+                                   placeholder="upload your TC"/>
+                        </div>
+                        <div class="col-3">
+                            <label>
+                                <b>Aadhar</b>
+                            </label>
+                            <input type="text" class="form-control aadhar"
+                                   name="aadhar_number" id="aadhar"
+                                   placeholder="Enter Aadhar Number"
+                                   required="1"/>
+                            <span id='adharmessage' style="color: red;"></span>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="form-group col-12 btn-center new_div"
+                         align="center">
+                        <div style="width: 200px;"
+                             class="s_website_form_label"/>
+                        <button type="submit" class="btn btn-primary submit_btn"
+                                id="submitbtn">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </t>
+    </template>
+</odoo>
